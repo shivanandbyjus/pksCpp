@@ -1,0 +1,65 @@
+Changes in 0.4-1
+
+  * BUG FIX: blim(..., method = "MDML") could fail when (b)eta estimates were
+    too close to zero (reported by Martin Losert)
+  * *.Rd: add DOIs to all references
+  * DESCRIPTION: new URL
+
+Changes in 0.4-0
+
+  * blim(): more flexible infrastructure for setting parameter constraints;
+    errequal and errtype arguments are now deprecated in favor of
+    betaequal/etaequal and betafix/etafix
+  * New functions: anova.blim(), coef.blim(), deviance.blim()
+  * as.pattern(..., as.set = TRUE), as.binmat(): work in more cases including
+    when R or N.R do not contain the empty set
+  * chess and probability data sets: extended examples
+  * NAMESPACE: import graphics
+
+Changes in 0.3-1
+
+  * BUG FIX: delineate() could return wrong knowledge structure when skillfun
+    had numeric itemIDs (or factor itemIDs in non-alphabetic order)
+  * New function: jacobian(), Jacobian matrix of a BLIM (draft version)
+  * delineate(): each element of classes is now a matrix; itemID is now the
+    index of the column that holds the item indicator
+  * blim(): new zeropad argument; per default, an incomplete response vector
+    is completed and padded with zeros
+
+Changes in 0.3-0
+
+  * New function: delineate(), knowledge structure delineated by skill
+    function
+  * New functions: is.forward.graded(), is.backward.graded()
+  * blim(): add random initial values for randinit = TRUE
+  * tests/sampling.R: add tests for uniform sampling
+  * blim(): recalculate degrees of freedom in goodness-of-fit test
+  * as.pattern(): add as.set argument; if TRUE return value is of class "set"
+  * as.binmat(): conversion from class set to matrix 
+  * DESCRIPTION: depend on package sets
+
+Changes in 0.2-1
+
+  * BUG FIX: simulate.blim() made incorrect predictions
+  * New data set: endm
+  * CITATION: add reference to ENDM paper
+
+Changes in 0.2-0
+
+  * BUG FIX: likelihood and fitted values reported by blim() were incorrect
+  * blim(): add estimators for errequal = TRUE, speed up some computations
+  * New data sets: density97, matter97
+  * as.pattern(): add as.letters argument for a letter representation of
+    response patterns
+  * CITATION: add reference to Psychoco 2012 talk
+
+Changes in 0.1-0
+
+  * initial release on CRAN
+  * Function blim() for fitting and testing basic local independence models
+  * Extractor functions for blim objects (some work automatically by
+    inheritance): simulate(), print(), logLik(), nobs(), resid(), fitted(),
+    plot(), AIC(), BIC()
+  * Conversion functions: as.pattern() and as.binmat()
+  * Data sets: DoignonFalmagne7, chess, probability
+
