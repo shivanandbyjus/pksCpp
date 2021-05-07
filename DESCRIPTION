@@ -1,4 +1,4 @@
-Package: pks
+Package: pksCpp
 Version: 0.4-1
 Date: 2019-05-24
 Title: Probabilistic Knowledge Structures
@@ -7,14 +7,15 @@ Authors@R: c(person(given = "Florian", family = "Wickelmaier",
              person(given = "Juergen", family = "Heller", role = "aut"),
              person(given = "Pasquale", family = "Anselmi", role = "ctb"))
 Depends: R (>= 3.0.0), stats, sets
-Imports: graphics
+Imports: graphics, Rcpp (>= 1.0.5), RcppEigen
+LinkingTo: Rcpp, RcppEigen
 Description: Fitting and testing probabilistic knowledge structures,
   especially the basic local independence model (BLIM, Doignon & Flamagne,
   1999), using the minimum discrepancy maximum likelihood (MDML) method
   (Heller & Wickelmaier, 2013 <doi:10.1016/j.endm.2013.05.145>).
 License: GPL (>= 2)
 URL: http://www.mathpsy.uni-tuebingen.de/wickelmaier
-NeedsCompilation: no
+NeedsCompilation: yes
 Packaged: 2019-05-24 13:39:29 UTC; siifw01
 Author: Florian Wickelmaier [aut, cre],
   Juergen Heller [aut],
