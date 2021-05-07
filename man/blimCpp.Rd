@@ -97,5 +97,4 @@ N.R <- DoignonFalmagne7$N.R       # frequencies of response patterns
 
 ## Fit basic local independence model (BLIM) 
 blimCpp(K, N.R)
-
-\keyword{models}
+}
