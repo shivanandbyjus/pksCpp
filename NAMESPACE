@@ -16,7 +16,8 @@ export(
   "is.backward.graded",
   "delineate",
   "jacobian",
-  "blimCpp"
+  "blimCpp",
+  "glimCpp"
 )
 
 
