@@ -4,20 +4,20 @@
 # Last mod: 05/Juli/2021, Julian Mollenhauer
 ##########################################
 
-glimCpp <- function(K, N.R, Weights, tol = 1e-07, maxiter = 10000, fdb = FALSE){
+glimCpp <- function(K, N.R, Weights, tol = 1e-07, maxiter = 100000, fdb = FALSE){
 
   K     <- as.matrix(K)
   R     <- as.binmat(N.R, uniq = TRUE)
   Weights <- as.matrix(Weights)
   
   # input checks
-  if(ncol(K) != ncol(R)) stop("Matrix K and R must have the same number of columns")
+  if(ncol(K) != ncol(R))       stop("Matrix K and R must have the same number of columns")
   if(ncol(K) != ncol(Weights)) stop("Matrix K and Weights must have the same number of columns")
   if(nrow(K) != nrow(Weights)) stop("Matrix K and Weights must have the same number of rows")
 
 
 
-  N       <- sum(N.R) # sample size
+  N       <- sum(N.R)  # sample size
   nitems  <- ncol(K)   # number of items q in Q
   nstates <- nrow(K)   # number of states k in K
   npat    <- nrow(R)   # number of unique response pattern
@@ -100,5 +100,45 @@ glimCpp <- function(K, N.R, Weights, tol = 1e-07, maxiter = 10000, fdb = FALSE){
   return(para)
 }
 
+## print method
+print.glim <- function(x, P.Kshow = FALSE, errshow = TRUE,
+  digits=max(3, getOption("digits") - 2), ...){
+  cat("\nGeneralized local independence models (GLIMs)\n")
+  cat("\nNumber of knowledge states:", x$nstates)
+  cat("\nNumber of response patterns:", x$npatterns)
+  cat("\nNumber of respondents:", x$ntotal)
 
+  method <- switch(x$method,
+            MD = "Minimum discrepancy",
+            ML = "Maximum likelihood",
+          MDML = "Minimum discrepancy maximum likelihood")
+  cat("\n\nMethod:", method)
+  cat("\nNumber of iterations:", x$iter)
+  G2   <- x$goodness.of.fit[1]
+  df   <- x$goodness.of.fit[2]
+  pval <- x$goodness.of.fit[3]
+  cat("\nGoodness of fit (2 log likelihood ratio):\n")
+  cat("\tG2(", df, ") = ", format(G2, digits=digits), ", p = ",
+      format(pval, digits=digits), "\n", sep="")
 
+  cat("\nMinimum discrepancy distribution (mean = ",
+    round(x$discrepancy, digits=digits), ")\n", sep="")
+  disc.tab <- x$disc.tab
+  names(dimnames(disc.tab)) <- NULL
+  print(disc.tab)
+  cat("\nMean number of errors (total = ",
+    round(sum(x$nerror), digits=digits), ")\n", sep="")
+  print(x$nerror)
+  if(P.Kshow){
+    cat("\nDistribution of knowledge states\n")
+    printCoefmat(cbind("P(K)"=x$P.K), digits=digits, cs.ind=1, tst.ind=NULL,
+      zap.ind=1)
+  }
+  if(errshow){
+    cat("\nError and guessing parameters\n")
+    printCoefmat(cbind(beta=x$beta, eta=x$eta), digits=digits, cs.ind=1:2,
+      tst.ind=NULL, zap.ind=1:2)
+  }
+  cat("\n")
+  invisible(x)
+}
