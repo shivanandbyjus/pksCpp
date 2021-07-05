@@ -6,7 +6,7 @@
   knowledge structures by maximum likelihood estimation.
 }
 \usage{
-glimCpp(K, N.R, Weights, tol = 1e-07, maxiter = 10000, fdb = FALSE)
+glimCpp(K, N.R, Weights, tol = 1e-07, maxiter = 100000, fdb = FALSE)
 
 }
 
@@ -15,12 +15,11 @@ glimCpp(K, N.R, Weights, tol = 1e-07, maxiter = 10000, fdb = FALSE)
     structure.  An element is one if the problem is contained in the state,
     and else zero.}
   \item{N.R}{a (named) vector of absolute frequencies of response patterns.}
+  \item{Weights}{state-by-problem matrix representing weighting factors to be applied to the problem-specific error rates to model their dependence on the states.}
   \item{tol}{tolerance, stopping criterion for iteration.}
   \item{maxiter}{the maximum number of iterations.}
   \item{fdb}{feedback during the optimization.}
-  \item{object}{an object of class \code{blim}, typically the result of a
-    call to \code{blim} or \code{blimCpp}.}
-  \item{\dots}{additional arguments passed to other methods.}
+
 }
 
 \details{
@@ -32,7 +31,7 @@ glimCpp(K, N.R, Weights, tol = 1e-07, maxiter = 10000, fdb = FALSE)
 }
 
 \value{
-  An object of class \code{glim} having the following components:
+  An object of class \code{glim} having (at least) the following components:
   \item{discrepancy}{the mean minimum discrepancy between response patterns
     and knowledge states.}
   \item{P.K}{the vector of estimated parameter values for probabilities of
@@ -91,6 +90,11 @@ data(DoignonFalmagne7)
 K   <- DoignonFalmagne7$K         # knowledge structure
 N.R <- DoignonFalmagne7$N.R       # frequencies of response patterns
 
+w <- exp(- 0.5 * 
+   matrix(c(1, 1, 1, 1, 2, 2, 2, 3, 3, 1, 1, 1, 1, 2, 2, 2, 3, 
+3, 2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 3, 3, 
+3, 2, 1, 2, 1, 1, 1) - 1, 9, 5))      # weighting factors
+
 ## Fit basic local independence model (BLIM) 
-blimCpp(K, N.R)
+glimCpp(K, N.R, w)
 }
