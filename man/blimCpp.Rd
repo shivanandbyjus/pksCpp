@@ -1,6 +1,5 @@
 \name{blimCpp}
 \alias{blimCpp}
-\alias{anova.blim}
 
 \title{Basic Local Independence Models (BLIMs) using C++}
 \description{Fits a basic local independence model (BLIM) for probabilistic
@@ -9,8 +8,6 @@
 \usage{
 blimCpp(K, N.R, tol = 1e-07, maxiter = 10000, fdb = FALSE)
 
-
-\method{anova}{blim}(object, \dots, test = c("Chisq", "none"))
 }
 
 \arguments{
@@ -21,11 +18,6 @@ blimCpp(K, N.R, tol = 1e-07, maxiter = 10000, fdb = FALSE)
   \item{tol}{tolerance, stopping criterion for iteration.}
   \item{maxiter}{the maximum number of iterations.}
   \item{fdb}{feedback during the optimization.}
-  \item{object}{an object of class \code{blim}, typically the result of a
-    call to \code{blim} or \code{blimCpp}.}
-  \item{test}{should the p-values of the chi-square distributions be
-    reported?}
-  \item{\dots}{additional arguments passed to other methods.}
 }
 
 \details{
