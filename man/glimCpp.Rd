@@ -1,8 +1,8 @@
 \name{glimCpp}
 \alias{glimCpp}
 
-\title{Generalized Local Independence Models (BLIMs) using C++}
-\description{Fits a basic local independence model (BLIM) for probabilistic
+\title{Generalized Local Independence Model (GLIM)}
+\description{Fits a generalized local independence model (GLIM) for probabilistic
   knowledge structures by maximum likelihood estimation.
 }
 \usage{
@@ -68,14 +68,6 @@ glimCpp(K, N.R, Weights, tol = 1e-07, maxiter = 100000, fdb = FALSE)
   \emph{Electronic Notes in Discrete Mathematics}, \bold{42}, 49--56.
   \doi{10.1016/j.endm.2013.05.145}
 
-  Rubin, D.B. (1981). The Bayesian bootstrap.
-  \emph{The Annals of Statistics}, \bold{9}, 130--134.
-  \doi{10.1214/aos/1176345338}
-
-  Weisstein, E.W. (2013, August 29). Triangle point picking.
-  In \emph{MathWorld -- A Wolfram Web Resource}.
-  Retrieved from
-  \url{http://mathworld.wolfram.com/TrianglePointPicking.html}.
 }
 
 \seealso{
