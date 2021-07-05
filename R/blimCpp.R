@@ -4,10 +4,10 @@
 # Last mod: 07/Mai/2021, Julian Mollenhauer
 ##########################################
 
-blimCpp <- function(K, N.R, model = c("blim"), tol = 1e-07 , maxiter = 10000, 
+blimCpp <- function(K, N.R, tol = 1e-07 , maxiter = 10000, 
                             fdb = FALSE){
 
-  model <- match.arg(model)
+  model <- "blim"
   K     <- as.matrix(K)
   R     <- as.binmat(N.R, uniq = TRUE)
 

@@ -1,12 +1,13 @@
 \name{blimCpp}
 \alias{blimCpp}
+\alias{anova.blim}
 
 \title{Basic Local Independence Models (BLIMs) using C++}
 \description{Fits a basic local independence model (BLIM) for probabilistic
   knowledge structures by maximum likelihood estimation.
 }
 \usage{
-blimCpp(K, N.R, tol = 1e-07 , maxiter = 10000, fdb = FALSE)
+blimCpp(K, N.R, tol = 1e-07, maxiter = 10000, fdb = FALSE)
 
 
 \method{anova}{blim}(object, \dots, test = c("Chisq", "none"))
